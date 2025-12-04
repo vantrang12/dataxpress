@@ -44,7 +44,7 @@ export const deleteOrganization = async (req, res) => {
 };
 
 // Lấy 1 organization theo id
-exports.getOrganizationById = async (req, res) => {
+export const getOrganizationById = async (req, res) => {
   const { id } = req.params;
 
   const { data, error } = await supabase
@@ -58,4 +58,3 @@ exports.getOrganizationById = async (req, res) => {
 
   res.json(data);
 };
-
