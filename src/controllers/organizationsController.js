@@ -42,3 +42,20 @@ export const deleteOrganization = async (req, res) => {
   if (error) return res.status(400).json({ error });
   res.json({ message: "Deleted successfully" });
 };
+
+// Lấy 1 organization theo id
+exports.getOrganizationById = async (req, res) => {
+  const { id } = req.params;
+
+  const { data, error } = await supabase
+    .from('organizations')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) return res.status(400).json({ error });
+  if (!data) return res.status(404).json({ message: "Organization not found" });
+
+  res.json(data);
+};
+
