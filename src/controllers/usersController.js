@@ -46,7 +46,7 @@ export const deleteUser = async (req, res) => {
 };
 
 // Lấy 1 user theo id
-exports.getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
   const { id } = req.params;
 
   const { data, error } = await supabase
@@ -60,4 +60,3 @@ exports.getUserById = async (req, res) => {
 
   res.json(data);
 };
-
