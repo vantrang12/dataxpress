@@ -44,3 +44,20 @@ export const deleteUser = async (req, res) => {
   if (error) return res.status(400).json({ error });
   res.json({ message: "Deleted successfully" });
 };
+
+// Lấy 1 user theo id
+exports.getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  const { data, error } = await supabase
+    .from('users')
+    .select('*')
+    .eq('id', id)
+    .single(); // chỉ lấy 1 dòng
+
+  if (error) return res.status(400).json({ error });
+  if (!data) return res.status(404).json({ message: "User not found" });
+
+  res.json(data);
+};
+
